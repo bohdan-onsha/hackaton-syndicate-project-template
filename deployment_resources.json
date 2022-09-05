@@ -1,0 +1,84 @@
+{
+  "hackathon-iam-role-DefaultLambdaRole": {
+    "predefined_policies": [],
+    "principal_service": "lambda",
+    "custom_policies": [
+      "hackathon-iam-role-DefaultLambdaPolicy"
+    ],
+    "resource_type": "iam_role",
+    "allowed_accounts": [
+      "${account_id}"
+    ]
+  },
+  "hackathon-iam-role-DefaultLambdaPolicy": {
+    "policy_content": {
+      "Statement": [
+        {
+          "Action": [
+            "cloudwatch:*",
+            "logs:*",
+            "s3:*",
+            "sqs:*",
+            "dynamodb:*"
+          ],
+          "Effect": "Allow",
+          "Resource": "*"
+        }
+      ],
+      "Version": "2012-10-17"
+    },
+    "resource_type": "iam_policy"
+  },
+  "${user-bucket-name}": {
+    "resource_type": "s3_bucket",
+    "cors": []
+  },
+  "${system-bucket-name}": {
+    "resource_type": "s3_bucket",
+    "cors": []
+  },
+  "${filejob-table-name}": {
+    "resource_type": "dynamodb_table",
+    "hash_key_name": "fileJobId",
+    "hash_key_type": "S",
+    "read_capacity": 1,
+    "write_capacity": 1,
+    "global_indexes": []
+  },
+  "hackathon-sqs-queue-OrchestrateFileJobQueue": {
+    "region": "${region}",
+    "fifo_queue": false,
+    "visibility_timeout": 300,
+    "resource_type": "sqs_queue"
+  },
+  "hackathon-sqs-queue-UnpackArchiveQueue": {
+    "region": "${region}",
+    "fifo_queue": false,
+    "visibility_timeout": 300,
+    "resource_type": "sqs_queue"
+  },
+  "hackathon-sqs-queue-table-ValidateFilePartQueue": {
+    "region": "${region}",
+    "fifo_queue": false,
+    "visibility_timeout": 300,
+    "resource_type": "sqs_queue"
+  },
+  "hackathon-sqs-queue-table-TransformFilePartQueue": {
+    "region": "${region}",
+    "fifo_queue": false,
+    "visibility_timeout": 300,
+    "resource_type": "sqs_queue"
+  },
+  "hackathon-sqs-queue-table-MergeFilePartQueue": {
+    "region": "${region}",
+    "fifo_queue": false,
+    "visibility_timeout": 300,
+    "resource_type": "sqs_queue"
+  },
+  "hackathon-sqs-queue-table-PackArchiveQueue": {
+    "region": "${region}",
+    "fifo_queue": false,
+    "visibility_timeout": 300,
+    "resource_type": "sqs_queue"
+  }
+}

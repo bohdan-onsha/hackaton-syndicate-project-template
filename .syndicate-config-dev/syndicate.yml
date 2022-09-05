@@ -1,0 +1,9 @@
+account_id: $ACCOUNT_ID
+aws_access_key_id: $ACCESS_KEY
+aws_secret_access_key: $SECRET_KEY
+deploy_target_bucket: epam-syndicate-hackathon
+project_path: $PATH_TO/SyndicateProjectTemplate
+region: eu-central-1
+tags:
+  project: serverless2049
+use_temp_creds: false
