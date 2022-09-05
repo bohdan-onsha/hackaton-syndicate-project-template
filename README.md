@@ -1,0 +1,1 @@
+# hackaton-syndicate-project-template
