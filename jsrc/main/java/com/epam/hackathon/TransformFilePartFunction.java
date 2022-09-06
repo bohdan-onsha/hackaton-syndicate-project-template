@@ -1,4 +1,4 @@
-package com.SyndicateProjectTemplate;
+package com.epam.hackathon;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -10,19 +10,18 @@ import com.syndicate.deployment.annotations.events.SqsTriggerEventSource;
 import java.util.HashMap;
 import java.util.Map;
 
-@LambdaHandler(lambdaName = "hackathon-lambda-function-UnpackArchiveFunction",
+@LambdaHandler(lambdaName = "hackathon-lambda-function-TransformFilePartFunction",
 	roleName = "hackathon-iam-role-DefaultLambdaRole",
 	isPublishVersion = true,
 	aliasName = "${lambdas_alias_name}",
 	memory=256
 )
-@SqsTriggerEventSource(targetQueue = "hackathon-sqs-queue-UnpackArchiveQueue", batchSize = 1)
+@SqsTriggerEventSource(targetQueue = "hackathon-sqs-queue-table-TransformFilePartQueue", batchSize = 1)
 @EnvironmentVariables(value = {
-        @EnvironmentVariable(key = "USER_BUCKET", value = "${user-bucket-name}"),
         @EnvironmentVariable(key = "SYSTEM_BUCKET", value = "${system-bucket-name}"),
         @EnvironmentVariable(key = "ORCHESTRATE_FILE_JOB_QUEUE", value = "${hackathon-sqs-queue-OrchestrateFileJobQueue-url}")
 })
-public class HackathonLambdaFunctionUnpackarchivefunction implements RequestHandler<Object, Map<String, Object>> {
+public class TransformFilePartFunction implements RequestHandler<Object, Map<String, Object>> {
 
 	public Map<String, Object> handleRequest(Object request, Context context) {
 		System.out.println("Hello from lambda");

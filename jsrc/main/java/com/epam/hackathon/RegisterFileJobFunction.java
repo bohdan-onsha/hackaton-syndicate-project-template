@@ -1,28 +1,26 @@
-package com.SyndicateProjectTemplate;
+package com.epam.hackathon;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.annotations.environment.EnvironmentVariable;
 import com.syndicate.deployment.annotations.environment.EnvironmentVariables;
-import com.syndicate.deployment.annotations.events.SqsTriggerEventSource;
+import com.syndicate.deployment.annotations.events.S3EventSource;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@LambdaHandler(lambdaName = "hackathon-lambda-function-PackArchiveFunction",
+@LambdaHandler(lambdaName = "hackathon-lambda-function-RegisterFileJobFunction",
 	roleName = "hackathon-iam-role-DefaultLambdaRole",
 	isPublishVersion = true,
 	aliasName = "${lambdas_alias_name}",
 	memory=256
 )
-@SqsTriggerEventSource(targetQueue = "hackathon-sqs-queue-table-PackArchiveQueue", batchSize = 1)
+@S3EventSource(targetBucket = "${user-bucket-name}", events = {"s3:ObjectCreated:*", "s3:ObjectRemoved:*"})
 @EnvironmentVariables(value = {
-        @EnvironmentVariable(key = "SYSTEM_BUCKET", value = "${system-bucket-name}"),
-        @EnvironmentVariable(key = "USER_BUCKET", value = "${user-bucket-name}"),
         @EnvironmentVariable(key = "ORCHESTRATE_FILE_JOB_QUEUE", value = "${hackathon-sqs-queue-OrchestrateFileJobQueue-url}")
 })
-public class HackathonLambdaFunctionPackarchivefunction implements RequestHandler<Object, Map<String, Object>> {
+public class RegisterFileJobFunction implements RequestHandler<Object, Map<String, Object>> {
 
 	public Map<String, Object> handleRequest(Object request, Context context) {
 		System.out.println("Hello from lambda");

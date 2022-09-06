@@ -1,4 +1,4 @@
-package com.SyndicateProjectTemplate;
+package com.epam.hackathon;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -21,7 +21,7 @@ import java.util.Map;
         @EnvironmentVariable(key = "SYSTEM_BUCKET", value = "${system-bucket-name}"),
         @EnvironmentVariable(key = "ORCHESTRATE_FILE_JOB_QUEUE", value = "${hackathon-sqs-queue-OrchestrateFileJobQueue-url}")
 })
-public class HackathonLambdaFunctionValidatefilepartfunction implements RequestHandler<Object, Map<String, Object>> {
+public class ValidateFilePartFunction implements RequestHandler<Object, Map<String, Object>> {
 
 	public Map<String, Object> handleRequest(Object request, Context context) {
 		System.out.println("Hello from lambda");
