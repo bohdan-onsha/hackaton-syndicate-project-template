@@ -2,7 +2,7 @@ account_id: $ACCOUNT_ID
 aws_access_key_id: $ACCESS_KEY
 aws_secret_access_key: $SECRET_KEY
 deploy_target_bucket: epam-syndicate-hackathon
-project_path: $PATH_TO/SyndicateProjectTemplate
+project_path: $PATH_TO/hackaton-syndicate-project-template
 region: eu-central-1
 tags:
   project: serverless2049
