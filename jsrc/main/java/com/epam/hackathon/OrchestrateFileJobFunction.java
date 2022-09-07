@@ -1,4 +1,4 @@
-package com.SyndicateProjectTemplate;
+package com.epam.hackathon;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -26,7 +26,7 @@ import java.util.Map;
         @EnvironmentVariable(key = "MERGE_FILEPART_QUEUE", value = "${hackathon-sqs-queue-table-MergeFilePartQueue-url}"),
         @EnvironmentVariable(key = "PACK_ARCHIVE_QUEUE", value = "${hackathon-sqs-queue-table-PackArchiveQueue-url}")
 })
-public class HackathonLambdaFunctionOrchestratefilejobfunction implements RequestHandler<Object, Map<String, Object>> {
+public class OrchestrateFileJobFunction implements RequestHandler<Object, Map<String, Object>> {
 
 	public Map<String, Object> handleRequest(Object request, Context context) {
 		System.out.println("Hello from lambda");
