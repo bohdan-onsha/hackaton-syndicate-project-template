@@ -6,16 +6,21 @@
    deployment framework from `rc1.0.0` branch:
    `pip install git+https://github.com/epam/aws-syndicate@rc1.0.0`
 
-2. Configure `syndicate.yml` config file: replace `$ACCOUNT_ID`, `$ACCESS_KEY`,
+2. Install [AWS Syndicate](https://github.com/epam/aws-syndicate)
+   Maven plugin from `rc1.0.0` branch:
+   `cd plugin`, `mvn clean install`
+
+3. Configure `syndicate.yml` config file: replace `$ACCOUNT_ID`, `$ACCESS_KEY`,
    `$SECRET_KEY` and `$PATH_TO` with actual values
 
-3. Configure `syndicate_aliases.yml` file: replace `$ACCOUNT_ID`(several times)
+4. Configure `syndicate_aliases.yml` file: replace `$ACCOUNT_ID`(several times)
    and `$HASH`
 
 ### Deployment
 
 1. Export path to the folder with `syndicate` configuration files:
-   `export SDCT_CONF=$PATH_TO/.syndicate-config-dev`
+   - Bash `export SDCT_CONF=$PATH_TO/.syndicate-config-dev`  
+   - PowerShell `$env:SDCT_CONF='$PATH_TO\.syndicate-config-dev'`
 
 2. Create S3 bucket for storing deployment artifacts (if not created yet):
    `syndicate create_deploy_target_bucket`
